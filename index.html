@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Music Note Generator</title>
+  <style>
+    body {
+      background: rgb(128, 88, 88);
+      color: white;
+      margin: 0;
+      transition: .5s;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 100vh;
+
+      font-size: 10em;
+      font-family: monospace;
+
+      cursor: pointer;
+      user-select: none;
+
+      overflow: hidden;
+    }
+
+    #noteLabel {
+      /* mix-blend-mode: difference; */
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="noteLabel"></h2>
+  <script src="random_note.js"></script>
+</body>
+</html>
