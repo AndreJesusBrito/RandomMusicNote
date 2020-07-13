@@ -89,7 +89,7 @@ function setNote(index) {
   }
 }
 
-document.body.addEventListener('click', () => {
+function randomNote() {
   // choose one random
   let randomSelected = Math.floor((Math.random() * activeNotes.length));
 
@@ -103,6 +103,15 @@ document.body.addEventListener('click', () => {
   // activeNotes[randomSelected].count++;
 
   setNote(randomSelected);
+}
+
+
+document.addEventListener('click', randomNote);
+
+document.addEventListener('keydown', event => {
+  if (event.keyCode === 32) {
+    randomNote();
+  }
 });
 
 // sets note on load
