@@ -16,6 +16,10 @@ const allNotes = [
     bgColor: "#b30101",
   },
   {
+    noteName: "F##",
+    bgColor: "#b30101",
+  },
+  {
     noteName: "G#",
     bgColor: "#ee0000",
   },
@@ -25,6 +29,10 @@ const allNotes = [
   },
   {
     noteName: "A",
+    bgColor: "#ff6300",
+  },
+  {
+    noteName: "Bbb",
     bgColor: "#ff6300",
   },
   {
@@ -38,6 +46,14 @@ const allNotes = [
   {
     noteName: "B",
     bgColor: "#99fe00",
+  },
+  {
+    noteName: "Cb",
+    bgColor: "#99fe00",
+  },
+  {
+    noteName: "B#",
+    bgColor: "#28ff00",
   },
   {
     noteName: "C",
@@ -56,6 +72,14 @@ const allNotes = [
     bgColor: "#007cff",
   },
   {
+    noteName: "C##",
+    bgColor: "#007cff",
+  },
+  {
+    noteName: "Ebb",
+    bgColor: "#007cff",
+  },
+  {
     noteName: "D#",
     bgColor: "#0500ff",
   },
@@ -65,6 +89,10 @@ const allNotes = [
   },
   {
     noteName: "E",
+    bgColor: "#4500ea",
+  },
+  {
+    noteName: "Fb",
     bgColor: "#4500ea",
   },
   {
