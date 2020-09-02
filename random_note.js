@@ -109,7 +109,7 @@ function randomNote() {
 document.addEventListener('click', randomNote);
 
 document.addEventListener('keydown', event => {
-  if (event.keyCode === 32) {
+  if (event.code === "Space" || event.keyCode === 32) {
     randomNote();
   }
 });
