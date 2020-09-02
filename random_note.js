@@ -77,6 +77,10 @@ let activeNotes = allNotes;
 
 const noteLabel = document.getElementById('noteLabel');
 
+function randomIndex(length) {
+  return Math.floor((Math.random() * length));
+}
+
 function setNote(index) {
   const selectedNote = activeNotes[index];
   if (selectedNote) {
@@ -91,7 +95,7 @@ function setNote(index) {
 
 function randomNote() {
   // choose one random
-  let randomSelected = Math.floor((Math.random() * activeNotes.length));
+  let randomSelected = randomIndex(activeNotes.length);
 
   // make it more random
   randomSelected = Math.random() > 0.5 ? activeNotes.length - 1 - randomSelected : randomSelected;
@@ -115,4 +119,4 @@ document.addEventListener('keydown', event => {
 });
 
 // sets note on load
-setNote(0);
+setNote(randomIndex(activeNotes.length));
