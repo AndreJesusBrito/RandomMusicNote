@@ -1,3 +1,5 @@
+const ROULETTE_DIFFERENCE_WEIGHT = 1.2;
+
 const allNotes = [
   {
     noteName: "F",
@@ -74,6 +76,11 @@ const allNotes = [
 ];
 
 let activeNotes = allNotes;
+activeNotes.forEach(function(note) {
+  note.count = 0;
+});
+let countTotal = 0;
+
 
 const noteLabel = document.getElementById('noteLabel');
 
@@ -81,9 +88,63 @@ function randomIndex(length) {
   return Math.floor((Math.random() * length));
 }
 
+function createRoulette() {
+  const sectors = [];
+  const equalSectorsSize = 1 / activeNotes.length;
+
+
+  const average = Math.round(activeNotes
+    .map(a => a.count)
+    .reduce((a, b) => (a + b))
+  / activeNotes.length);
+
+
+  let accumulatedDiference = 0;
+  for (let i = 0; i < activeNotes.length; i++) {
+    const note = activeNotes[i];
+
+    const difference = (ROULETTE_DIFFERENCE_WEIGHT / activeNotes.length) * (average - note.count);
+    const distributedDiference = difference / (activeNotes.length - 1);
+
+    sectors[i] = equalSectorsSize + difference + distributedDiference;
+
+    accumulatedDiference += distributedDiference;
+  }
+
+  let total = 0;
+  for (let i = 0; i < sectors.length; i++) {
+    const sectionSize = Math.max(0, sectors[i] - accumulatedDiference) 
+    sectors[i] = sectionSize;
+    total += sectionSize;
+  }
+
+  // normalize values
+  for (let i = 0; i < sectors.length; i++) {
+    sectors[i] /= total;
+  }
+
+  return sectors;
+}
+
+
+function getSelectedSector(random, sectors) {
+  let accumulation = 0;
+  for (let i = 0; i < sectors.length; i++) {
+    if (random <= sectors[i] + accumulation) {
+      return i;
+    }
+    accumulation += sectors[i];
+  }
+  return -1;
+}
+
 function setNote(index) {
   const selectedNote = activeNotes[index];
+
   if (selectedNote) {
+    selectedNote.count++;
+    countTotal++;
+
     if (selectedNote.noteName[1]) {
       noteLabel.innerHTML = selectedNote.noteName;
     } else {
@@ -94,19 +155,12 @@ function setNote(index) {
 }
 
 function randomNote() {
-  // choose one random
-  let randomSelected = randomIndex(activeNotes.length);
+  activeNotes.sort();
 
-  // make it more random
-  randomSelected = Math.random() > 0.5 ? activeNotes.length - 1 - randomSelected : randomSelected;
+  const roulette = createRoulette();
+  const randomSelectedIndex = getSelectedSector(Math.random(), roulette);
 
-  // test distribution
-  // if (!activeNotes[randomSelected].count) {
-  //   activeNotes[randomSelected].count = 0;
-  // }
-  // activeNotes[randomSelected].count++;
-
-  setNote(randomSelected);
+  setNote(randomSelectedIndex);
 }
 
 
