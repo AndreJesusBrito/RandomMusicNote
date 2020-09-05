@@ -1,78 +1,39 @@
 const ROULETTE_DIFFERENCE_WEIGHT = 1.2;
 
+const baseNotes = {
+  "C" : { bgColor: "#28ff00" },
+  "C#": { bgColor: "#00ffe9" },
+  "D" : { bgColor: "#007cff" },
+  "D#": { bgColor: "#0500ff" },
+  "E" : { bgColor: "#4500ea" },
+  "F" : { bgColor: "#54004e" },
+  "F#": { bgColor: "#740000" },
+  "G" : { bgColor: "#b30101" },
+  "G#": { bgColor: "#ee0000" },
+  "A" : { bgColor: "#ff6300" },
+  "A#": { bgColor: "#ffec01" },
+  "B" : { bgColor: "#99fe00" },
+}
+
 const allNotes = [
-  {
-    noteName: "F",
-    bgColor: "#54004e",
-  },
-  {
-    noteName: "F#",
-    bgColor: "#740000",
-  },
-  {
-    noteName: "Gb",
-    bgColor: "#740000",
-  },
-  {
-    noteName: "G",
-    bgColor: "#b30101",
-  },
-  {
-    noteName: "G#",
-    bgColor: "#ee0000",
-  },
-  {
-    noteName: "Ab",
-    bgColor: "#ee0000",
-  },
-  {
-    noteName: "A",
-    bgColor: "#ff6300",
-  },
-  {
-    noteName: "A#",
-    bgColor: "#ffec01",
-  },
-  {
-    noteName: "Bb",
-    bgColor: "#ffec01",
-  },
-  {
-    noteName: "B",
-    bgColor: "#99fe00",
-  },
-  {
-    noteName: "C",
-    bgColor: "#28ff00",
-  },
-  {
-    noteName: "C#",
-    bgColor: "#00ffe9",
-  },
-  {
-    noteName: "Db",
-    bgColor: "#00ffe9",
-  },
-  {
-    noteName: "D",
-    bgColor: "#007cff",
-  },
-  {
-    noteName: "D#",
-    bgColor: "#0500ff",
-  },
-  {
-    noteName: "Eb",
-    bgColor: "#0500ff",
-  },
-  {
-    noteName: "E",
-    bgColor: "#4500ea",
-  },
-  {
-    noteName: "E#",
-    bgColor: "#57009e",
-  },
+  { noteName: "F" , enharmonic: baseNotes["F"],  },
+  { noteName: "F#", enharmonic: baseNotes["F#"], },
+  { noteName: "Gb", enharmonic: baseNotes["F#"], },
+  { noteName: "G" , enharmonic: baseNotes["G"],  },
+  { noteName: "G#", enharmonic: baseNotes["G#"], },
+  { noteName: "Ab", enharmonic: baseNotes["G#"], },
+  { noteName: "A" , enharmonic: baseNotes["A"],  },
+  { noteName: "A#", enharmonic: baseNotes["A#"], },
+  { noteName: "Bb", enharmonic: baseNotes["A#"], },
+  { noteName: "B" , enharmonic: baseNotes["B"],  },
+  { noteName: "C" , enharmonic: baseNotes["C"],  },
+  { noteName: "C#", enharmonic: baseNotes["C#"], },
+  { noteName: "Db", enharmonic: baseNotes["C#"], },
+  { noteName: "D" , enharmonic: baseNotes["D"],  },
+  { noteName: "D#", enharmonic: baseNotes["D#"], },
+  { noteName: "Eb", enharmonic: baseNotes["D#"], },
+  { noteName: "E" , enharmonic: baseNotes["E"],  },
+  { noteName: "E#", enharmonic: baseNotes["F"],  },
 ];
 
 let activeNotes = allNotes;
@@ -150,7 +111,7 @@ function setNote(index) {
     } else {
       noteLabel.innerText = selectedNote.noteName;
     }
-    document.body.style.backgroundColor = selectedNote.bgColor;
+    document.body.style.backgroundColor = selectedNote.enharmonic.bgColor;
   }
 }
 
