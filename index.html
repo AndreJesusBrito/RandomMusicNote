@@ -7,7 +7,34 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="menu_overlay">
+    <div id="menu">
+
+      <div id="menu_toggler">
+        <svg id="menu_icon">
+          <rect width="30" height="6" y="0"></rect>
+          <rect width="30" height="6" y="10"></rect>
+          <rect width="30" height="6" y="20"></rect>
+        </svg>
+        <div id="menu_body">
+          <div>
+            Options
+            <ul>
+              <li>no options yet</li>
+            </ul>
+
+            Set Interval
+            <ul id="preset_list"></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
   <h2 id="noteLabel"></h2>
+  <script src="presets.js"></script>
   <script src="random_note.js"></script>
 </body>
 </html>

@@ -36,14 +36,20 @@ const allNotes = [
   { noteName: "E#", enharmonic: baseNotes["F"],  },
 ];
 
+
+const noteLabel = document.getElementById('noteLabel');
+const menu = document.getElementById('menu');
+const menuBody = document.getElementById('menu_body');
+const menuToggler = document.getElementById('menu_toggler');
+const menuOverlay = document.getElementById('menu_overlay');
+
+
 let activeNotes = allNotes;
 activeNotes.forEach(function(note) {
   note.count = 0;
 });
 let countTotal = 0;
 
-
-const noteLabel = document.getElementById('noteLabel');
 
 function randomIndex(length) {
   return Math.floor((Math.random() * length));
@@ -125,11 +131,42 @@ function randomNote() {
 }
 
 
+
+menuToggler.addEventListener('click', function(event) {
+  menu.classList.toggle('open');
+  menuOverlay.classList.toggle('open');
+  event.stopPropagation();
+});
+
+menuOverlay.addEventListener('click', function (event) {
+  if (menu.classList.contains('open')) {
+    menuToggler.click();
+    event.stopPropagation();
+  }
+});
+
+menuBody.addEventListener('click', event => event.stopPropagation());
+
 document.addEventListener('click', randomNote);
 
 document.addEventListener('keydown', event => {
-  if (event.code === "Space" || event.keyCode === 32) {
-    randomNote();
+  switch (event.code) {
+    case "Space":
+      if (menu.classList.contains('open')) {
+        menuToggler.click();
+      } else {
+        randomNote();
+      }
+      break;
+    case "Escape":
+      if (menu.classList.contains('open')) {
+        menuToggler.click();
+      }
+      break;
+
+    case "KeyM":
+      menuToggler.click();
+      break;
   }
 });
 
