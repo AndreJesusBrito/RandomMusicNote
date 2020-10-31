@@ -108,7 +108,11 @@ function randomNote() {
 }
 
 function applyPreset(preset) {
-  activeNotes = preset.notes;
+  if (preset.alias) {
+    activeNotes = presets[preset.alias].notes;
+  } else {
+    activeNotes = preset.notes;
+  }
   activeNotes.forEach(function(note) {
     note.count = 0;
   });
