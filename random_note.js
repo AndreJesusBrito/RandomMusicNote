@@ -15,39 +15,16 @@ const baseNotes = {
   "B" : { bgColor: "#99fe00" },
 }
 
-const allNotes = [
-  { noteName: "F" , enharmonic: baseNotes["F"],  },
-  { noteName: "F#", enharmonic: baseNotes["F#"], },
-  { noteName: "Gb", enharmonic: baseNotes["F#"], },
-  { noteName: "G" , enharmonic: baseNotes["G"],  },
-  { noteName: "G#", enharmonic: baseNotes["G#"], },
-  { noteName: "Ab", enharmonic: baseNotes["G#"], },
-  { noteName: "A" , enharmonic: baseNotes["A"],  },
-  { noteName: "A#", enharmonic: baseNotes["A#"], },
-  { noteName: "Bb", enharmonic: baseNotes["A#"], },
-  { noteName: "B" , enharmonic: baseNotes["B"],  },
-  { noteName: "C" , enharmonic: baseNotes["C"],  },
-  { noteName: "C#", enharmonic: baseNotes["C#"], },
-  { noteName: "Db", enharmonic: baseNotes["C#"], },
-  { noteName: "D" , enharmonic: baseNotes["D"],  },
-  { noteName: "D#", enharmonic: baseNotes["D#"], },
-  { noteName: "Eb", enharmonic: baseNotes["D#"], },
-  { noteName: "E" , enharmonic: baseNotes["E"],  },
-  { noteName: "E#", enharmonic: baseNotes["F"],  },
-];
-
 
 const noteLabel = document.getElementById('noteLabel');
 const menu = document.getElementById('menu');
 const menuBody = document.getElementById('menu_body');
 const menuToggler = document.getElementById('menu_toggler');
 const menuOverlay = document.getElementById('menu_overlay');
+const presetList = document.getElementById('preset_list');
 
 
-let activeNotes = allNotes;
-activeNotes.forEach(function(note) {
-  note.count = 0;
-});
+let activeNotes = presets.M3.notes;
 let countTotal = 0;
 
 
@@ -117,7 +94,7 @@ function setNote(index) {
     } else {
       noteLabel.innerText = selectedNote.noteName;
     }
-    document.body.style.backgroundColor = selectedNote.enharmonic.bgColor;
+    document.body.style.backgroundColor = baseNotes[selectedNote.enharmonic].bgColor;
   }
 }
 
@@ -128,6 +105,17 @@ function randomNote() {
   const randomSelectedIndex = getSelectedSector(Math.random(), roulette);
 
   setNote(randomSelectedIndex);
+}
+
+function applyPreset(preset) {
+  activeNotes = preset.notes;
+  activeNotes.forEach(function(note) {
+    note.count = 0;
+  });
+  countTotal = 0;
+  randomNote();
+  menu.classList.remove('open');
+  menuOverlay.classList.remove('open');
 }
 
 
@@ -170,5 +158,16 @@ document.addEventListener('keydown', event => {
   }
 });
 
+// add presets to menu
+for (const presetName in presets) {
+  const preset = presets[presetName];
+  const li = document.createElement('li');
+
+  li.innerText = preset.name;
+  li.addEventListener('click', applyPreset.bind(null, preset))
+
+  presetList.appendChild(li);
+}
+
 // sets note on load
-setNote(randomIndex(activeNotes.length));
+applyPreset(presets.M3);
