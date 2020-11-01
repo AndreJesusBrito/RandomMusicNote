@@ -1,4 +1,10 @@
+html, body {
+  overflow: hidden;
+}
+
 body {
+  position: relative;
+
   background: rgb(128, 88, 88);
   color: white;
   margin: 0;
@@ -9,14 +15,11 @@ body {
   justify-content: center;
 
   height: 100vh;
-
   font-size: 2em;
   font-family: monospace;
 
   cursor: pointer;
   user-select: none;
-
-  overflow: hidden;
 }
 
 #noteLabel {
