@@ -22,13 +22,24 @@ body {
   user-select: none;
 }
 
+main {
+  flex-direction: column;
+  height: 100vh;
+}
+
 #noteLabel {
-  font-size: 10em;
+  margin: 0.5rem;
+  font-size: 8em;
+  font-weight: 700;
   user-select: none;
 }
 
 
-
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #menu {
   position: absolute;
