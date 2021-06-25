@@ -16,6 +16,7 @@ const baseNotes = {
 }
 
 
+const presetNameLabel = document.getElementById('presetNameLabel');
 const noteLabel = document.getElementById('noteLabel');
 const menu = document.getElementById('menu');
 const menuBody = document.getElementById('menu_body');
@@ -121,6 +122,8 @@ function applyPreset(presetID, presets) {
   localStorage.setItem('rms_preset', presetID);
 
   const preset = presets[presetID];
+
+  presetNameLabel.innerText = preset.name;
 
   if (preset.alias) {
     activeNotes = presets[preset.alias].notes;
