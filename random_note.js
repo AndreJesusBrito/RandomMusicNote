@@ -19,6 +19,7 @@ const baseNotes = {
 const presetNameLabel = document.getElementById('presetNameLabel');
 const noteLabel = document.getElementById('noteLabel');
 const directionIconLabel = document.getElementById('direction-icon-label');
+const solutionLabel = document.getElementById('solution-label');
 const menu = document.getElementById('menu');
 const menuBody = document.getElementById('menu_body');
 const menuToggler = document.getElementById('menu_toggler');
@@ -26,8 +27,18 @@ const menuOverlay = document.getElementById('menu_overlay');
 const presetList = document.getElementById('preset_list');
 
 
-let activeNotes; // default preset
+/**
+ * @type {boolean} if the interval direction is up
+ */
+let directionUp = true;
+
+let selectedNote = null;
+
+let activeNotes = null;
+
 let countTotal = 0;
+
+let currentPreset = null;
 
 // load last used preset
 const lastPreset = localStorage.getItem('rms_preset');
@@ -39,6 +50,9 @@ if (lastPreset && presets[lastPreset]) {
 }
 
 
+function xor(a,b) {
+  return a && !b || !a && b;
+}
 
 function randomIndex(length) {
   return Math.floor((Math.random() * length));
@@ -95,7 +109,7 @@ function getSelectedSector(random, sectors) {
 }
 
 function setNote(index) {
-  const selectedNote = activeNotes[index];
+  selectedNote = activeNotes[index];
 
   if (selectedNote) {
     selectedNote.count++;
@@ -113,9 +127,15 @@ function setNote(index) {
 function randomNote() {
   activeNotes.sort();
 
-  const directionUp = Math.random() > 0.5;
+  // choose a random direction for next note
+  directionUp = Math.random() > 0.5;
 
+  // show new direction in the screen
   directionIconLabel.innerText = directionUp ? '☝' : '👇';
+
+  // hide solution
+  solutionLabel.classList.add('hidden');
+  solutionLabel.innerText = '';
 
   const roulette = createRoulette();
   const randomSelectedIndex = getSelectedSector(Math.random(), roulette);
@@ -127,6 +147,8 @@ function applyPreset(presetID, presets) {
   localStorage.setItem('rms_preset', presetID);
 
   const preset = presets[presetID];
+
+  currentPreset = preset;
 
   presetNameLabel.innerText = preset.name;
 
@@ -142,6 +164,11 @@ function applyPreset(presetID, presets) {
   randomNote();
   menu.classList.remove('open');
   menuOverlay.classList.remove('open');
+}
+
+function revealSolution() {
+  solutionLabel.innerText = xor(directionUp, currentPreset.reversed) ? selectedNote.next : selectedNote.prev;
+  solutionLabel.classList.remove('hidden');
 }
 
 
@@ -181,7 +208,17 @@ document.addEventListener('keydown', event => {
     case "KeyM":
       menuToggler.click();
       break;
+
+    case "KeyS":
+      revealSolution();
+      break;
   }
+});
+
+// reveal solution logic
+solutionLabel.addEventListener('click', ev => {
+  revealSolution();
+  ev.stopPropagation();
 });
 
 // add presets to menu

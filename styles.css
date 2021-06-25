@@ -45,6 +45,23 @@ main {
   font-size: 4.5rem;
 }
 
+#solution-label {
+  min-width: 100px;
+  min-height: 60px;
+  margin-left: 30px;
+}
+#solution-label.hidden {
+  background: white;
+}
+#solution-label.hidden::after {
+  content: "?";
+  position: relative;
+  width: 100%;
+  color: #000;
+  text-align: center;
+  background: white;
+}
+
 
 
 #menu {
@@ -67,6 +84,7 @@ main {
   height: 26px;
   margin-top: 60px;
   border-radius: 10px 0 0 10px;
+  pointer-events: all;
 }
 
 #menu_icon rect {
@@ -97,6 +115,10 @@ main {
   height: 100%;
   position: absolute;
   transition: 0.5s;
+}
+
+#menu_overlay:not(.open) {
+  pointer-events: none;
 }
 
 #menu_overlay.open {
