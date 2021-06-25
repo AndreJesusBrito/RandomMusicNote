@@ -18,6 +18,7 @@ const baseNotes = {
 
 const presetNameLabel = document.getElementById('presetNameLabel');
 const noteLabel = document.getElementById('noteLabel');
+const directionIconLabel = document.getElementById('direction-icon-label');
 const menu = document.getElementById('menu');
 const menuBody = document.getElementById('menu_body');
 const menuToggler = document.getElementById('menu_toggler');
@@ -68,7 +69,7 @@ function createRoulette() {
 
   let total = 0;
   for (let i = 0; i < sectors.length; i++) {
-    const sectionSize = Math.max(0, sectors[i] - accumulatedDiference) 
+    const sectionSize = Math.max(0, sectors[i] - accumulatedDiference)
     sectors[i] = sectionSize;
     total += sectionSize;
   }
@@ -111,6 +112,10 @@ function setNote(index) {
 
 function randomNote() {
   activeNotes.sort();
+
+  const directionUp = Math.random() > 0.5;
+
+  directionIconLabel.innerText = directionUp ? '☝' : '👇';
 
   const roulette = createRoulette();
   const randomSelectedIndex = getSelectedSector(Math.random(), roulette);

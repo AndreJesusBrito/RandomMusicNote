@@ -41,6 +41,12 @@ main {
   justify-content: center;
 }
 
+#direction-icon-label {
+  font-size: 4.5rem;
+}
+
+
+
 #menu {
   position: absolute;
   right: 0;
