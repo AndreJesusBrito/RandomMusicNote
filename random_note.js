@@ -24,8 +24,18 @@ const menuOverlay = document.getElementById('menu_overlay');
 const presetList = document.getElementById('preset_list');
 
 
-let activeNotes = presets.M3.notes;
+let activeNotes; // default preset
 let countTotal = 0;
+
+// load last used preset
+const lastPreset = localStorage.getItem('rms_preset');
+if (lastPreset && presets[lastPreset]) {
+  applyPreset(lastPreset, presets)
+} else {
+  // sets note on load
+  applyPreset('P5', presets);
+}
+
 
 
 function randomIndex(length) {
@@ -107,7 +117,11 @@ function randomNote() {
   setNote(randomSelectedIndex);
 }
 
-function applyPreset(preset) {
+function applyPreset(presetID, presets) {
+  localStorage.setItem('rms_preset', presetID);
+
+  const preset = presets[presetID];
+
   if (preset.alias) {
     activeNotes = presets[preset.alias].notes;
   } else {
@@ -163,15 +177,12 @@ document.addEventListener('keydown', event => {
 });
 
 // add presets to menu
-for (const presetName in presets) {
-  const preset = presets[presetName];
+for (const presetID in presets) {
+  const preset = presets[presetID];
   const li = document.createElement('li');
 
   li.innerText = preset.name;
-  li.addEventListener('click', applyPreset.bind(null, preset))
+  li.addEventListener('click', applyPreset.bind(null, presetID, presets));
 
   presetList.appendChild(li);
 }
-
-// sets note on load
-applyPreset(presets.M3);
