@@ -1,4 +1,4 @@
-const CACHE_NAME = '/';
+const CACHE_NAME = './';
 const urlsToCache = [
   '/',
 
