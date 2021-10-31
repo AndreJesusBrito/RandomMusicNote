@@ -3,7 +3,7 @@ const presets = {};
 presets.P5 = {
   name: "Perfect Fifths",
   notes: [
-    { noteName: "Cb",  prev: "Gb",  next: "Fb",   enharmonic: "B"   },
+    { noteName: "Cb",  prev: "Fb",  next: "Gb",   enharmonic: "B"   },
     { noteName: "Gb",  prev: "Cb",  next: "Db",   enharmonic: "F#"  },
     { noteName: "C",   prev: "F",   next: "G",    enharmonic: "C"   },
     { noteName: "G",   prev: "C",   next: "D",    enharmonic: "G"   },
@@ -88,7 +88,7 @@ presets.m3 = {
     { noteName: "Ab",   prev: "F",   next: "Cb",   enharmonic: "G#"  },
     { noteName: "A",    prev: "F#",  next: "C",    enharmonic: "A"   },
     { noteName: "F##",  prev: "D##", next: "A#",   enharmonic: "G"   },
-    { noteName: "A#",   prev: "F##", next: "C",    enharmonic: "A#"  },
+    { noteName: "A#",   prev: "F##", next: "C#",   enharmonic: "A#"  },
     { noteName: "Bbb",  prev: "Gb",  next: "Dbb",  enharmonic: "A"   },
     { noteName: "Bb",   prev: "G",   next: "Db",   enharmonic: "A#"  },
     { noteName: "B",    prev: "G#",  next: "D",    enharmonic: "B"   },
