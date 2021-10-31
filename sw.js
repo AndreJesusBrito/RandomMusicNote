@@ -1,4 +1,8 @@
+// inspired from https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e
+
+const APP_PREFIX = 'RandomMusicNote';
 const CACHE_NAME = './';
+const CACHE_ROOT = '/RandomMusicNote';
 const urlsToCache = [
   '/',
 
@@ -8,56 +12,50 @@ const urlsToCache = [
 
   '/random_note.js',
   '/presets.js',
-];
-
-self.addEventListener('install', function(event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        debugger;
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
+].map(url => CACHE_ROOT + url);
 
 
-// request handling logic
-self.addEventListener('fetch', function(event) {
+// Respond with cached resources
+self.addEventListener('fetch', function (event) {
 
   // only handle GETs and let the browser handle the rest
   if (event.request.method != 'GET') return;
 
   event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
+    caches.match(event.request).then(function (request) {
+      return request || fetch(e.request)
+    })
+  )
+});
 
-        return fetch(event.request).then(
-          function(response) {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
+// Cache resources
+self.addEventListener('install', function (e) {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(function (cache) {
+      console.log('installing cache : ' + CACHE_NAME)
+      return cache.addAll(urlsToCache)
+    })
+  )
+})
 
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
-            var responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(function(cache) {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
+// Delete outdated caches
+self.addEventListener('activate', function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keyList) {
+      // `keyList` contains all cache names under your username.github.io
+      // filter out ones that has this app prefix to create white list
+      var cacheWhitelist = keyList.filter(function (key) {
+        return key.indexOf(APP_PREFIX);
       })
-    );
+      // add current cache name to white list
+      cacheWhitelist.push(CACHE_NAME)
+
+      return Promise.all(keyList.map(function (key, i) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          console.log('deleting cache : ' + keyList[i] )
+          return caches.delete(keyList[i])
+        }
+      }))
+    })
+  )
 });
