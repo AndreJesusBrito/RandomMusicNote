@@ -1,7 +1,7 @@
 {
   "name": "Random Music Note",
   "short_name": "Random Note",
-  "start_url": ".",
+  "start_url": "https://andrejesusbrito.github.io/RandomMusicNote/",
   "display": "minimal-ui",
   "theme_color": "#0a72dd",
   "background_color": "#000",
