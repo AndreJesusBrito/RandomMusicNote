@@ -1,0 +1,16 @@
+{
+  "name": "Random Music Note",
+  "short_name": "Random Note",
+  "start_url": ".",
+  "display": "minimal-ui",
+  "theme_color": "#0a72dd",
+  "background_color": "#000",
+  "description": "Simple app to train relative pitch",
+  "icons": [
+    {
+      "src": "assets/icons/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
