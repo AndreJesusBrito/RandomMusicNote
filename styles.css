@@ -32,6 +32,11 @@ main {
   font-size: 8em;
   font-weight: 700;
   user-select: none;
+  text-shadow: rgba(0,0,0,0.7) 10px 8px 0;
+}
+
+#presetNameLabel, #solution-label:not(.hidden) {
+  text-shadow: #000 0 0 10px, #000 2px 2px 0;
 }
 
 
