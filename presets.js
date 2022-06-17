@@ -95,3 +95,32 @@ presets.m3 = {
     { noteName: "B#",   prev: "G##", next: "D#",   enharmonic: "B#"  },
   ]
 };
+
+
+presets.M2 = {
+  name: "Major seconds",
+  notes: [
+    { noteName: "C",     prev: "Bb",   next: "D",     enharmonic: "C"   },
+    { noteName: "C#",    prev: "B",    next: "D#",    enharmonic: "C#"  },
+    { noteName: "Db",    prev: "Cb",   next: "Eb",    enharmonic: "C#"  },
+    { noteName: "D",     prev: "C",    next: "E",     enharmonic: "D"   },
+    { noteName: "D#",    prev: "C#",   next: "E#",    enharmonic: "D#"  },
+    { noteName: "Ebb",   prev: "Cbb",  next: "Fb",    enharmonic: "D#"  },
+    { noteName: "Eb",    prev: "Db",   next: "F",     enharmonic: "D#"  },
+    { noteName: "E",     prev: "D",    next: "F#",    enharmonic: "E"   },
+    { noteName: "Fb",    prev: "Ebb",  next: "Gb",    enharmonic: "E"   },
+    { noteName: "E#",    prev: "D#",   next: "F##",   enharmonic: "F"   },
+    { noteName: "F",     prev: "Eb",   next: "G",     enharmonic: "F"   },
+    { noteName: "F#",    prev: "E",    next: "G#",    enharmonic: "F#"  },
+    { noteName: "Gb",    prev: "Fb",   next: "Ab",    enharmonic: "F#"  },
+    { noteName: "G",     prev: "F",    next: "A",     enharmonic: "G"   },
+    { noteName: "G#",    prev: "F#",   next: "A#",    enharmonic: "G#"  },
+    { noteName: "Ab",    prev: "Gb",   next: "Bb",    enharmonic: "G#"  },
+    { noteName: "A",     prev: "G",    next: "B",     enharmonic: "A"   },
+    { noteName: "Bbb",   prev: "Abb",  next: "Cb",    enharmonic: "A"   },
+    { noteName: "A#",    prev: "G#",   next: "B#",    enharmonic: "A#"  },
+    { noteName: "B",     prev: "A",    next: "C#",    enharmonic: "B"   },
+    { noteName: "B#",    prev: "A#",   next: "C##",   enharmonic: "C"   },
+  ]
+};
+
