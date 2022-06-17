@@ -105,7 +105,7 @@ presets.M2 = {
     { noteName: "Db",    prev: "Cb",   next: "Eb",    enharmonic: "C#"  },
     { noteName: "D",     prev: "C",    next: "E",     enharmonic: "D"   },
     { noteName: "D#",    prev: "C#",   next: "E#",    enharmonic: "D#"  },
-    { noteName: "Ebb",   prev: "Cbb",  next: "Fb",    enharmonic: "D#"  },
+    { noteName: "Ebb",   prev: "Dbb",  next: "Fb",    enharmonic: "D#"  },
     { noteName: "Eb",    prev: "Db",   next: "F",     enharmonic: "D#"  },
     { noteName: "E",     prev: "D",    next: "F#",    enharmonic: "E"   },
     { noteName: "Fb",    prev: "Ebb",  next: "Gb",    enharmonic: "E"   },
