@@ -148,3 +148,9 @@ presets.m2 = {
   ]
 }; 
    
+presets.M6 = {
+  name: "Major Sixths",
+  alias: "m3",
+  reversed: true,
+};
+
