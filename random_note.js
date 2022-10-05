@@ -186,6 +186,12 @@ menuOverlay.addEventListener('click', function (event) {
   }
 });
 
+
+document.body.style.height = window.innerHeight + 'px';
+window.addEventListener('resize', event => {
+  document.body.style.height = window.innerHeight + 'px';
+});
+
 menuBody.addEventListener('click', event => event.stopPropagation());
 
 document.addEventListener('click', randomNote);
